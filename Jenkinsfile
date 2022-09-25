@@ -41,6 +41,7 @@ pipeline {
       emailext to: "heri.mendoza9@gmail.com",
       subject: "Test Email",
       body: "Test"
+      attachLog: true
     }
   }
  }
