@@ -13,8 +13,9 @@ pipeline {
         '''
      }
    }
-    stage ('test') {
+    stage ('Test') {
       steps {
+        sh 'echo "HELLO TEST THIS IS A WEBHOOK TEST"'
         sh '''#!/bin/bash
         source test3/bin/activate
         py.test --verbose --junit-xml test-reports/results.xml
