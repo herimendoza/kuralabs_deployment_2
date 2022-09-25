@@ -36,4 +36,11 @@ pipeline {
      }
    
   }
+  post{
+    always{
+      emailext to: "heri.mendoza9@gmail.com",
+      subject: "Test Email",
+      body: "Test"
+    }
+  }
  }
