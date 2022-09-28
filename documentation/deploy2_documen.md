@@ -148,7 +148,7 @@ Once the app was successfully deployed, a 'Deploy' stage was added to the Jenkin
 sh '/var/lib/jenkins/.local/bin/eb deploy url-shortener-main-dev'
 ```
 
-When the build is executed, this command would run 'eb' (a script) and deploy the environment that was created. It was noted that for the 'Deploy' stage to work, the user would have had to have done `$eb init` and `$eb create` before re-building on Jenkins. eb cannot deploy an environment that has not been created yet. Once the Elastic Beanstalk environment and app were terminated/deleted, the build would fail at the deploy stage. It would not build successfully in Jenkins until the user had used the init and create commands.
+When the build is executed, this command would run 'eb' (a script) and deploy the environment that was created. It was noted that for the 'Deploy' stage to work, the user would have had to have done `$eb init` and `$eb create` before re-building on Jenkins. eb cannot deploy an environment that has not been created yet. Once the Elastic Beanstalk environment and app were terminated/deleted, the build would fail at the deploy stage. It would not build successfully in Jenkins until the user had used the init and create commands. However, assuming the environment was created, any changes to the source code could now be automatically deployed. Sample output from terminal after successful deployment: [terminal output](https://github.com/herimendoza/kuralabs_deployment_2/blob/1770c3ca3e3ed1a5402de86f211e353cb2587945/documentation/deploy2_success.png)
 
 ---
 
@@ -168,7 +168,7 @@ post {
 }
 ```
 
-The 'always' means that that section of code will always execute, regardless of build success of fail. One can tailor notifications to be sent in case of build failure or build status change (success to failure or failure to success). The various variables used call the build status, project name, etc. The 'attachLog: true' line appends the build log to the email.
+The 'always' means that that section of code will always execute, regardless of build success of fail. One can tailor notifications to be sent in case of build failure or build status change (success to failure or failure to success). The various variables used call the build status, project name, etc. The 'attachLog: true' line appends the build log to the email. Here is a sample of the log that was sent as part of the notification step: [Sample Build Log](https://github.com/herimendoza/kuralabs_deployment_2/blob/1770c3ca3e3ed1a5402de86f211e353cb2587945/documentation/build.log)
 
 ---
 
