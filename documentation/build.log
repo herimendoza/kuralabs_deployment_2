@@ -1,0 +1,98 @@
+Started by user heri mendoza
+Connecting to https://api.github.com using herimendoza/****** (GitHub token)
+Obtained Jenkinsfile from 117d0a88c49c0bb17f60c36540c6caa72ab9b933
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/url-shortener_main
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential 6298e209-05ac-4818-98e9-325647a55398
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/url-shortener_main/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/herimendoza/kuralabs_deployment_2.git # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/herimendoza/kuralabs_deployment_2.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+using GIT_ASKPASS to set credentials GitHub token
+ > git fetch --no-tags --force --progress -- https://github.com/herimendoza/kuralabs_deployment_2.git +refs/heads/main:refs/remotes/origin/main # timeout=10
+Checking out Revision 117d0a88c49c0bb17f60c36540c6caa72ab9b933 (main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 117d0a88c49c0bb17f60c36540c6caa72ab9b933 # timeout=10
+Commit message: "removed extra quote email notif"
+ > git rev-list --no-walk 117d0a88c49c0bb17f60c36540c6caa72ab9b933 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
+Requirement already satisfied: pip in ./test3/lib/python3.10/site-packages (22.2.2)
+Requirement already satisfied: attrs==22.1.0 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (22.1.0)
+Requirement already satisfied: click==8.1.3 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (8.1.3)
+Requirement already satisfied: flask==2.2.2 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (2.2.2)
+Requirement already satisfied: iniconfig==1.1.1 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (1.1.1)
+Requirement already satisfied: itsdangerous==2.1.2 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.1.2)
+Requirement already satisfied: jinja2==3.1.2 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (3.1.2)
+Requirement already satisfied: markupsafe==2.1.1 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (2.1.1)
+Requirement already satisfied: packaging==21.3 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (21.3)
+Requirement already satisfied: pluggy==1.0.0 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (1.0.0)
+Requirement already satisfied: py==1.11.0 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (1.11.0)
+Requirement already satisfied: pyparsing==3.0.9 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 12)) (3.0.9)
+Requirement already satisfied: pytest==7.1.2 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 13)) (7.1.2)
+Requirement already satisfied: tomli==2.0.1 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 14)) (2.0.1)
+Requirement already satisfied: werkzeug==2.2.2 in ./test3/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (2.2.2)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
++ echo HELLO TEST THIS IS A WEBHOOK TEST
+HELLO TEST THIS IS A WEBHOOK TEST
+[Pipeline] sh
+============================= test session starts ==============================
+platform linux -- Python 3.10.6, pytest-7.1.2, pluggy-1.0.0 -- /var/lib/jenkins/workspace/url-shortener_main/test3/bin/python3
+cachedir: .pytest_cache
+rootdir: /var/lib/jenkins/workspace/url-shortener_main
+collecting ... collected 1 item
+
+test_app.py::test_home_page PASSED                                       [100%]
+
+- generated xml file: /var/lib/jenkins/workspace/url-shortener_main/test-reports/results.xml -
+============================== 1 passed in 0.18s ===============================
+Post stage
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] sh
++ /var/lib/jenkins/.local/bin/eb deploy url-shortener-main-dev
+WARNING: Git is in a detached head state. Using branch "default".
+WARNING: Git is in a detached head state. Using branch "default".
+WARNING: Git is in a detached head state. Using branch "default".
+Creating application version archive "app-117d-220928_030347252512".
+
+Uploading: [--------------------------------------------------] 0% 
+Uploading: [############--------------------------------------] 25% 
+Uploading: [#########################-------------------------] 50% 
+Uploading: [######################################------------] 75% 
+Uploading: [##################################################] 100% Done...
+2022-09-28 03:03:50    INFO    Environment update is starting.
+2022-09-28 03:03:54    INFO    Deploying new version to instance(s).
+2022-09-28 03:04:02    INFO    Instance deployment successfully generated a 'Procfile'.
+2022-09-28 03:04:06    INFO    Instance deployment completed successfully.
+2022-09-28 03:04:13    INFO    New application version was deployed to running EC2 instances.
+2022-09-28 03:04:13    INFO    Environment update completed successfully.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] emailext
+Sending email to: heri.mendoza9@gmail.com
