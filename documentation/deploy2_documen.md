@@ -16,7 +16,7 @@ ___
 
 #### 1a. Jenkins instance creation:
 
-An EC2 instance was created on AWS with certain specification. It was created with an Bbuntu image, and the firewall/securtity group was programmed to only open ports 8080, 80 and 22. A bash script was written before launching to automatically install Jenkins and the Java Runtime Environment. The following code was used:
+An EC2 instance was created on AWS with certain specification. It was created with an Ubuntu image, and the firewall/securtity group was programmed to only open ports 8080, 80 and 22. A bash script was written before launching to automatically install Jenkins and the Java Runtime Environment. The following code was used:
 ```console
 #!/bin/bash
 sudo apt update
